@@ -15,12 +15,16 @@ class ClearAllPinsCommand extends Commando.Command {
 
   async run(message, args) {
     var targetChannel;
+
+    // Check for specified channel to clear pins from
     if(!args) {targetChannel = message.channel;}
     else {targetChannel = message.guild.channels.find('name', args);}
 
+    // Prevent user from entering non-existant channel
     if(!targetChannel) {
       message.reply("unknown channel- \""+args+".\"");
     }else {
+      // Fetch and delete all pinned messages from the target channel
       let pinned = targetChannel.fetchPinnedMessages()
       pinned.then(data => {
         data = data.array();
@@ -28,6 +32,7 @@ class ClearAllPinsCommand extends Commando.Command {
           data[message].unpin();
         }
       }).catch(console.error);
+      // Notify user of successful operation
       message.say("Pins cleared in #"+targetChannel.name+".");
     }
   }

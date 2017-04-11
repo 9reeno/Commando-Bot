@@ -14,12 +14,15 @@ class BattleCommand extends Commando.Command {
   }
 
   async run(message, args) {
+    // Randomly choose rock paper or scissors
     let choices = ["rock", "paper", "scissors"];
     var cpuChoice = choices[Math.floor(Math.random()*choices.length)];
 
     var outcome;
+    // Prevent user from not passing in rps
     if(!choices.includes(args)) {
       outcome = "invalid opponent- \""+args+".\"";
+    // Outcome calculation
     }else if(cpuChoice === args) {
       outcome = cpuChoice+". Tie!";
     }else if(cpuChoice === "rock" && args === "scissors" || cpuChoice === "paper" && args == "rock" || cpuChoice == "scissors" && args == "paper") {
@@ -27,6 +30,7 @@ class BattleCommand extends Commando.Command {
     }else {
       outcome = cpuChoice+". You win!"
     }
+    // Inform user of loss or success
     message.reply(outcome);
   }
 }

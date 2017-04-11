@@ -15,6 +15,7 @@ bot.registry
   .registerCommandsIn(__dirname+"/commands");
 
 bot
+  // Freeze bot until fully initialized
   .on('ready', () => {
     console.log("Locked n' Loaded");
   })

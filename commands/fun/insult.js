@@ -16,8 +16,10 @@ class InsultCommand extends Commando.Command {
   async run(message, args) {
     var recipients = message.channel.members;
     var recipient;
+    // Find passed in user, if any
     if(args) {
       recipient = recipients.find(val => val.user.username === args);
+    // If there's no passed user, select an online one at random
     }else {
       recipient = recipients.random();
       let i = 0;
@@ -27,9 +29,11 @@ class InsultCommand extends Commando.Command {
       }
     }
 
+    // If recipient was not found, notify user
     if(recipient === null) {
       message.reply("unknown user- \""+args+".\"");
     }else {
+    // Else insult recipient
       message.say("This "+recipient+" has a funny face!");
     }
   }

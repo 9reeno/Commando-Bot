@@ -11,14 +11,14 @@ class DeleteMessagesCommand extends Commando.Command {
             examples: ['delmsgs \'username\' 10'],
             args: [{
                 key: 'username',
-                prompt: 'User to delete messages?',
+                prompt: 'Who is the target user?',
                 type: 'string',  
                 validate: (value, msg, arg)  => {
                     return msg.channel.members.find(member => member.user.username === value);
                 },
             }, {
                 key: 'total',
-                prompt: 'Total messages to delete?',
+                prompt: 'Number of messages to be deleted?',
                 type: 'integer',
                 max: 100,
                 min: 1,

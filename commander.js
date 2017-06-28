@@ -2,7 +2,7 @@ const Commando = require('discord.js-commando');
 const config = require('./config.js');
 
 const bot = new Commando.Client({
-  owner: '160927542092627968', // <- Discord account ID
+  owner: config.ownerID, // <- Discord account ID
   commandPrefix: '-'
 });
 
